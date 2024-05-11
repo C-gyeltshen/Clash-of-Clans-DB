@@ -1,0 +1,122 @@
+@font-face {
+    font-family: "coc";
+    src: url("/Users/chimigyeltshen/Desktop/Sem2 /DBMS101/COC_DB/supercell-magic.ttf")
+    format("woff2");
+}
+
+body{
+    margin: 0px;
+    font-family: "coc";
+    font-weight: bolder;
+}
+
+/* nav bar */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: transparent;
+    margin-top: 22px;
+}
+li {
+    float: left;
+
+}  
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.home{
+    border-radius: 10px 10px 0 0;
+}
+.one{
+    border-radius: 10px 10px 0 0;
+}
+
+li a:hover {
+    background-color: #e8e8e1;
+}
+.main{
+    width: 100%;
+    height: 100vh;
+    background: url("https://cdn.artstation.com/p/thumbnails/000/772/875/thumb.jpg")no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.placeholder{
+    width: 70%;
+    height: 80%;
+    background-color: aqua;
+    border-radius: 20px;
+    background-color: #5e5451;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.space{
+    width: 80%;
+    height: 10%;
+
+}
+.contents{
+    width: 90%;
+    height: 85%;
+    background-color:#e8e8e1;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#up{
+    width: 95%;
+    height: 50%;
+    background-color:#6a7899;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+}
+#first{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#second{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#space{
+    width: 95%;
+    height: 5%;
+
+}
+#down{
+    width:95% ;
+    height: 40%;
+    background-color: bisque;
+    border-radius: 5px;
+}
+#down img {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+}
+h1{
+    text-align: center;
+}
