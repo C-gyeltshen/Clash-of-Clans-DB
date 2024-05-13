@@ -3,15 +3,125 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
+model achievements {
+  id                  String @id @default(auto()) @map("_id") @db.ObjectId
+  CompletedChallenges Int
+  PlayerAchievement   String
+  PlayerID_PK_        Int    @map("PlayerID(PK)")
+  ProgressTowardsGoal Int
+}
+
+model attack_logs {
+  id                 String @id @default(auto()) @map("_id") @db.ObjectId
+  AttackID_PK_       Int    @map("AttackID(PK)")
+  AttackTimestamp    String
+  AttackerID_FK_     Int    @map("AttackerID(FK)")
+  DefenderID_FK_     Int    @map("DefenderID(FK)")
+  Outcome            String
+  ResourcesLooted    Int
+  TrophiesGainedLost Int
+}
+
+model building_info {
+  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  BuildingID_PK_   Int    @map("BuildingID(PK)")
+  BuildingLevel    Int
+  BuildingPosition String
+  BuildingType     String
+  VillageID_FK_    Int    @map("VillageID(FK)")
+}
+
+model chat_logs {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  MessageContent String
+  MessageID_PK_  Int    @map("MessageID(PK)")
+  ReceiverID_FK_ Int    @map("ReceiverID(FK)")
+  SenderID_FK__  Int    @map("SenderID(FK))")
+  Timestamp      String
+}
+
+model clan_info {
+  id              String @id @default(auto()) @map("_id") @db.ObjectId
+  ClanDescription String
+  ClanID_PK_      Int    @map("ClanID(PK)")
+  ClanLevel       Int
+  ClanMemberID    Int
+  ClanName        String
+}
+
+model defence {
+  id                 String @id @default(auto()) @map("_id") @db.ObjectId
+  AttackerID_FK_     Int    @map("AttackerID(FK)")
+  DefenceID_OK_      Int    @map("DefenceID(OK)")
+  DefenderID_FK_     Int    @map("DefenderID(FK)")
+  DefenseTimestamp   String
+  Outcome            String
+  ResourcesDefended  Int
+  TrophiesLostGained Int
+}
+
+model events {
+  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  EventID_Pk_      Int    @map("EventID(Pk)")
+  EventOutcome     String
+  EventParticipant String
+  EventTimestamp   String
+  EventType        String
+}
+
+model heroes {
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  Damage       Int
+  HeroID_PK_   Int    @map("HeroID(PK)")
+  HeroName     String
+  Hp           Int
+  Level        Int
+  Target       String
+  TrainingTime String
+}
+
 model player_login {
-  login_id     Int       @id @default(autoincrement())
-  player_id    Int?
-  login_time   DateTime? @db.Time(6)
-  device_info  String?   @db.VarChar(100)
-  ip_address   String?   @db.Inet
-  login_status String?   @db.VarChar(100)
+  id             String  @id @default(auto()) @map("_id") @db.ObjectId
+  DeviceInfo     String
+  IPAddress      String
+  LoginId_PK_    Int     @map("LoginId(PK)")
+  LoginSuccess   Boolean
+  LoginTimestamp String
+  PlayerID_FK_   Int     @map("PlayerID(FK)")
+}
+
+model players {
+  id              String @id @default(auto()) @map("_id") @db.ObjectId
+  PlayerExp       Int
+  PlayerID_PK_    Int    @map("PlayerID(PK)")
+  PlayerLevel     Int
+  PlayerName      String
+  PlayerResources Int
+  PlayerTrophies  Int
+  /// Field referred in an index, but found no data to define the type.
+  field           Json?
+
+}
+
+model troop_info {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  TroopHousingSpace Int
+  TroopID_PK_       Int    @map("TroopID(PK)")
+  TroopName         String
+  TroopTrainingCost Int
+  TroopTrainingTime String
+  TroopType         String
+  VillageID_FK_     Int    @map("VillageID(FK)")
+}
+
+model village_info {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  PlayerID_FK_  Int    @map("PlayerID(FK)")
+  VillageID_PK_ Int    @map("VillageID(PK)")
+  VillageLevel  Int
+  VillageName   String
 }
