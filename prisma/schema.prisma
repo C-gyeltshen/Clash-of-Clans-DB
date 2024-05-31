@@ -105,6 +105,7 @@ model players {
   /// Field referred in an index, but found no data to define the type.
   field           Json?
 
+
 }
 
 model troop_info {
