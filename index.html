@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <link rel="stylesheet" href="style.css" />
-    </head>
-    <body>
+    <link rel="stylesheet" href="style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
     <div class="main">
         <ul>
             <li><a class="active" href="index.html">Lobby</a></li>
@@ -14,38 +14,39 @@
         </ul>
         <div class="player_log">
             <div id="title">
-            <h1>Player Login</h1>
-        </div>
-        <div class="placeholder">
-            <div id="login_id">
-            <label for="L_id">login id: </label>
-            <input type="text" id="L_id" name="fname" />
-        </div>
-        <div id="player_id">
-            <label for="P_id">player id: </label>
-            <input type="text" id="P_id" name="fname" />
-        </div>
-        <div id="login_time">
-            <label for="Log_id">login time: </label>
-            <input type="text" id="Log_id" name="fname" />
-        </div>
-        <div id="device_info">
-            <label for="D_id">Device info: </label>
-            <input type="text" id="D_id" name="fname" />
-        </div>
-        <div id="ip_address">
-            <label for="Ip_id">Ip Address: </label>
-            <input type="text" id="Ip_id" name="fname" />
-        </div>
-        <div id="login_success">
-            <label for="Status_id">Login success: </label>
-            <input type="text" id="Status_id" name="fname" />
-        </div>
-            <div id="ok">
-                <input type="submit" id="submit_button" value="Submit" />
+                <h1>Player Login</h1>
             </div>
+            <div class="placeholder">
+                    <div id="login_id">
+                        <label for="fname">login id : </label>
+                        <input type="text" id="L_id" name="fname">
+                    </div>
+                    <div id="player_id">
+                        <label for="fname">player id : </label>
+                        <input type="text" id="P_id" name="fname">
+                    </div>
+                    <div id="login_time">
+                        <label for="fname">login time : </label>
+                        <input type="text" id="Log_id" name="fname">
+                    </div>
+                    <div id="device_info">
+                        <label for="fname">Device info : </label>
+                        <input type="text" id="D_id" name="fname">
+                    </div>
+                    <div id="ip_address">
+                        <label for="fname">Ip Address : </Address></label>
+                        <input type="text" id="Ip_id" name="fname">
+                    </div>
+                    <div id="login_success">
+                        <label for="fname">Login success : </label>
+                        <input type="text" id="Status_id" name="fname">
+                    </div>
+                    <div id="ok">
+                        <input type="submit" id="add" value="Submit">
+                    </div>
             </div>
         </div>
+
     </div>
     <script>
         const login_id = document.getElementById("L_id");
@@ -54,62 +55,48 @@
         const device_info = document.getElementById("D_id");
         const ipAddress = document.getElementById("Ip_id");
         const login_status = document.getElementById("Status_id");
-        const submit_button = document.getElementById("submit_button");
-
-        submit_button.addEventListener("click", function (event) {
-        event.preventDefault();
-
-        const loginID_value = parseInt(login_id.value);
-        const playerID_value = parseInt(player_id.value);
-        const login_time_value = login_time.value;
-        const device_info_value = device_info.value;
-        const ip_address_value = ipAddress.value;
-        const login_status_value = login_status.value;
-
-        console.log(loginID_value);
-        console.log(playerID_value);
-        console.log(login_time_value);
-        console.log(device_info_value);
-        console.log(ip_address_value);
-        console.log(login_status_value);
-
-        const url = "http://127.0.0.1:3000/create/login";
-
-        const data = {
-            DeviceInfo: device_info_value,
-            IPAddress: ip_address_value,
-            LoginId_PK_: loginID_value,
-            LoginSuccess: login_status_value,
-            LoginTimestamp: login_time_value,
-            PlayerID_FK_: playerID_value,
-        };
-
-        // Send the POST request
-        fetch(url, {
-            method: "POST", 
-            headers: {
-            "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        })
-            .then((response) => {
-            if (!response.ok) {
-              // Handle the error response
-                throw new Error(
-                "Network response was not ok " + response.statusText
-                );
-            }
-            return response.json(); // Parse the JSON from the response
-            })
-            .then((data) => {
-            // Handle the response data
-            console.log("Success:", data);
-            })
-            .catch((error) => {
-            // Handle any errors that occurred during the fetch
-            console.error("Error:", error);
+        const submit_button = document.getElementById("add");
+    
+        submit_button.addEventListener('click',function(){
+    
+            const loginID_value = parseInt(login_id.value);
+            const playerID_value = parseInt(player_id.value);
+            const login_time_valur = login_time.value;
+            const device_info_value = device_info.value;
+            const ip_address_value = ipAddress.value;
+            const login_status_value = login_status.value;
+    
+            event.preventDefault();
+            console.log(loginID_value)
+            console.log(playerID_value)
+            console.log(login_time_valur)
+            console.log(device_info_value)
+            console.log(ip_address_value)
+            console.log(login_status_value)
+    
+            const login = fetch('http://localhost:3000/player/login', {
+                method: 'POST',
+                body: JSON.stringify({
+                    login_id: loginID_value,
+                    player_id: playerID_value,
+                    login_time: login_time_valur,
+                    device_info: device_info_value,
+                    ipaddress: ip_address_value,
+                    login_success: login_status_value
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             });
+    
+            if (login.ok) {
+                console.log('Login successful');
+            } else {
+                throw new Error('Login failed.');
+            }
+    
         });
     </script>
-    </body>
+    
+</body>
 </html>

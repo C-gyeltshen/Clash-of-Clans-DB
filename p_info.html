@@ -32,7 +32,7 @@
                         <input type="text" id="PR" name="lname"><br><br>
                         <label for="lname">Player Trophies : </label>
                         <input type="text" id="PTrophi" name="lname"><br><br>
-                        <input type="submit" value="Submit">
+                        <input type="submit" id="add" value="Submit">
                     </div>
                 </div>
                 <div id="space"></div>
@@ -42,5 +42,49 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const player_id1 = document.getElementById("playerId");
+        const player_name1 = document.getElementById("pName");
+        const player_level1 = document.getElementById("pLevel");
+        const exp_point = document.getElementById("exp");
+        const player_resources = document.getElementById("PR");
+        const player_trophies = document.getElementById("PTrophi");
+        const submit = document.getElementById("add");
+
+        submit.addEventListener('click', function(){
+            const player_id_value = parseInt(player_id1.value)
+            const player_name_value = player_name1.value
+            const player_level_value = parseInt(player_level1.value)
+            const exp_point_value = parseInt(exp_point.value)
+            const player_resources_value = player_resources.value
+            const player_trophies_value = parseInt(player_trophies.value)
+
+            event.preventDefault()
+            console.log(player_id_value)
+            console.log(player_name_value)
+            console.log(player_level_value)
+            console.log(exp_point_value)
+            console.log(player_resources_value)
+            console.log(player_trophies_value)
+
+            const login = fetch('http://localhost:3000/player/info', {
+                method: 'POST',
+                body: JSON.stringify({
+                    player_id: player_id_value,
+                    player_name: player_name_value,
+                    player_level: player_level_value,
+                    exp: exp_point_value,
+                    resources: player_resources_value,
+                    trophies: player_trophies_value
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                
+            });
+        });
+
+    </script>
 </body>
 </html>
