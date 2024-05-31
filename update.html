@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="update.css">
+</head>
+<body>
+    <ul>
+        <li><a class="active" href="index.html">Lobby</a></li>
+        <li><a href="p_info.html">PlayerInformation</a></li>
+        <li><a href="delete.html">Delete Record</a></li>
+        <li><a href="update.html">Update</a></li>
+    </ul>
+    <div class="main">
+        <div class="one">
+            <h1>Enter the player_id to be deleted</h1>
+            <form>
+                <label for="fname">player ID:</label>
+                <input type="text" id="fname" name="fname"><br><br>
+                <label for="fname">player Name:</label>
+                <input type="text" id="pname" name="fname"><br><br>
+                <input type="submit" id="add" value="Submit">
+            </form>
+        </div>
+    </div>
+    <script>
+        const player_iD = document.getElementById("fname");
+        const player_name = document.getElementById("pname");
+        const submit = document.getElementById("add");
+
+        submit.addEventListener('click',function(){
+            const player_iD_value = parseInt(player_iD.value)
+            const player_name_value = player_name.value
+
+            event.preventDefault();
+            console.log(player_iD_value)
+            console.log(player_name_value)
+
+            const login = fetch('http://localhost:3000/records/update', {
+                method: 'PATCH',
+                body: JSON.stringify({
+                    player_id:player_iD_value,
+                    player_name:player_name_value
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+        })
+    </script>
+</body>
+</html>

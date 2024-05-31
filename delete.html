@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="delete.css">
+</head>
+<body>
+    <ul>
+        <li><a class="active" href="index.html">Lobby</a></li>
+        <li><a href="p_info.html">PlayerInformation</a></li>
+        <li><a href="delete.html">Delete Record</a></li>
+        <li><a href="update.html">Update</a></li>
+    </ul>
+    <div class="main">
+        <div class="one">
+            <h1>Enter the player_id to be deleted</h1>
+            <form>
+                <label for="fname">Login ID:</label>
+                <input type="text" id="fname" name="fname"><br><br>
+                <input type="submit" id="ok" value="Submit">
+            </form>
+        </div>
+    </div>
+    <script>
+        const player_Id = document.getElementById("fname");
+        const submit = document.getElementById("ok");
+
+        submit.addEventListener('click',function(){
+            const player_Id_value = parseInt(player_Id.value)
+
+            event.preventDefault();
+            console.log(player_Id_value);
+
+            const login = fetch('http://localhost:3000/records/delete', {
+                method: 'DELETE',
+                body: JSON.stringify({
+                    login_id: player_Id_value
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+    
+        });
+
+    </script>
+</body>
+</html>

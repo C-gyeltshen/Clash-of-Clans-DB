@@ -9,7 +9,7 @@ const port = 3000
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*'); // Allow requests from any origin
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'); // Allow the GET, POST, OPTIONS methods
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST,PATCH, OPTIONS,DELETE'); // Allow the GET, POST, OPTIONS methods
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); // Allow Content-Type header
     next();
 });
@@ -29,7 +29,7 @@ app.get('/ok', (req, res) => {
     res.send('Hello World!')
 })
 
-//Creating a new data in db
+//CREATE NEW RECORDS IN THE PLAYER_LOGIN TABLE
 app.post("/player/login", async (req, res) => {
     const { login_id,player_id,login_time,device_info,ipaddress,login_success } = req.body;
     const result = await prisma.player_login.create({
@@ -44,7 +44,7 @@ app.post("/player/login", async (req, res) => {
     });
     res.json(result);
     });
-
+// CREATE NEW RECORDS IN PLAYER INFORMATION TABLE
     app.post("/player/info", async (req, res) => {
         const { player_id,player_name, player_level, exp, resources, trophies } = req.body;
         const result = await prisma.players.create({
@@ -71,7 +71,7 @@ app.delete("/records/delete", async (req, res) => {
     res.json({ result });
     });
 
-// Read data from db
+// READ DATA FROM DB
 app.get("/records/read", async(req,res)=>{
     try{
         const result = await prisma.player_login.findMany();
@@ -81,7 +81,7 @@ app.get("/records/read", async(req,res)=>{
     }
 });
 
-// UPDATE TASK TO BE COMPLETED OR NOT COMPLETED
+// UPDATE TASK THE NAME OF THE PLAYER WITH PLAYER_ID
 app.patch("/records/update", async (req, res) => {
     const { player_id, player_name } = req.body;
     console.log(player_id, player_name);
